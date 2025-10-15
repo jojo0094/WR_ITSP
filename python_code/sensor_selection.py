@@ -44,7 +44,7 @@ def sensor_selection(n: int, covmatrix: np.ndarray, sigmas: float,
     # Simplifying notation and defining relevant variables
     k = choice_number_sensors
     sensorselection = np.zeros((k, k))
-    dataset_sensorselection_mutualinformation = np.zeros((k**2, k+1))
+    dataset_sensorselection_mutualinformation = np.zeros((n*k, k+1))
     placeholder = 0  # Placeholder for table positioning
     
     # Matrix normalization for determinant calculations
@@ -62,6 +62,7 @@ def sensor_selection(n: int, covmatrix: np.ndarray, sigmas: float,
         initialnode = node
         nextiterationplacement = np.array([initialnode])
         counter = 2  # Counter represents number of sensors
+        sensorselection_mutual_information = []  # Initialize for each node
         
         if (node + 1) % 50 == 0:
             print(f"Progress: {node + 1}/{n} nodes processed")
@@ -94,25 +95,25 @@ def sensor_selection(n: int, covmatrix: np.ndarray, sigmas: float,
             
             # Store results
             sensorselection[counter-1, :len(nextiterationplacement)] = nextiterationplacement
-            if counter == 2:
-                sensorselection_mutual_information = [valmax]
-            else:
-                sensorselection_mutual_information.append(valmax)
+            sensorselection_mutual_information.append(valmax)
             
             counter += 1
         
         # Store first node in sensor selection matrix
         sensorselection[0, 0] = initialnode
         
+        # Convert MI list to array and pad if necessary
+        mi_array = np.array(sensorselection_mutual_information)
+        
         # Save placements and MI scores in general matrix
         dataset_sensorselection_mutualinformation[placeholder:placeholder+k, :k] = sensorselection
-        dataset_sensorselection_mutualinformation[placeholder:placeholder+k, k] = sensorselection_mutual_information
+        dataset_sensorselection_mutualinformation[placeholder:placeholder+len(mi_array), k] = mi_array
         
         # Update table placement
         placeholder += k
         
         # Update mutual information table
-        mutualinformationtable[1:len(sensorselection_mutual_information)+1, node+1] = sensorselection_mutual_information
+        mutualinformationtable[1:len(mi_array)+1, node+1] = mi_array
         
         # Reset sensor selection for next iteration
         sensorselection = np.zeros((k, k))
