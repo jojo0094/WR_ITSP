@@ -1,0 +1,8 @@
+# Python dependencies for WR_ITSP project
+numpy>=1.24.0
+scipy>=1.10.0
+pandas>=2.0.0
+matplotlib>=3.7.0
+scikit-learn>=1.3.0
+# For SWMM data handling (optional, only if direct SWMM modeling is needed)
+# pyswmm>=1.2.0
