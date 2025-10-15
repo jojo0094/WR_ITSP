@@ -13,8 +13,28 @@ The repository contains the code to reproduce the results from Case Study 2 (CS2
 
 If you want to replicate CS2 results, the code and relevant data sets will be provided. We will also provide step-by-step documentation in another file which will walk you through our MATLAB code.
 
+## 🐍 Python Implementation Available!
+
+**NEW:** A Python implementation of the MATLAB code is now available in the `python_code/` directory. This implementation:
+- ✅ Does not require a MATLAB license
+- ✅ Provides equivalent functionality to the MATLAB version
+- ✅ Includes comprehensive documentation and examples
+- ✅ Can be easily integrated with Python data science tools
+- ✅ Optional integration with PySWMM for direct SWMM modeling
+
+👉 **See [QUICKSTART.md](QUICKSTART.md) to get started in 5 minutes!**
+
+👉 **See [PYTHON_README.md](PYTHON_README.md) for detailed Python usage instructions.**
+
+Quick start with Python:
+```bash
+pip install -r requirements.txt
+python -m python_code --example  # Run example with synthetic data
+```
+
 ## Contents
 
+- [**Python Implementation** (NEW!)](#python-implementation)
 - [Getting Started - datasets](#1)
 - [Description of source code](#8)
 - [Workflow](#2)
@@ -24,6 +44,39 @@ If you want to replicate CS2 results, the code and relevant data sets will be pr
 - [Mutual Information calculations](#6)
 - [Reproducing figures without running the simulations and configuration files](#9)
 - [Authors](#7)
+
+<a id='python-implementation'></a>
+## Python Implementation
+
+A complete Python translation of the MATLAB code is available in the `python_code/` directory.
+
+**Key Features:**
+- All core algorithms implemented in Python (NumPy, SciPy, scikit-learn)
+- Sensor selection algorithm (Algorithm 1)
+- Mutual information comparison
+- GLM and GRNN estimation methods
+- Comprehensive documentation and examples
+
+**Installation:**
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Run simple example (no data download needed)
+python -m python_code --example
+
+# Run full pipeline (requires downloading data from Zenodo)
+python -m python_code --max-sensors 250
+```
+
+**Documentation:** See [PYTHON_README.md](PYTHON_README.md) for:
+- Installation instructions
+- Usage examples
+- Module documentation
+- SWMM integration guide
+- Troubleshooting
+
+**SWMM Dependencies:** The Python implementation can optionally use PySWMM for direct SWMM modeling, but it is not required for running the sensor placement algorithms on pre-generated data.
   
 <!-- - [Brief Synopsis](#2)
 - [Manual Installation](#3)
