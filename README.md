@@ -22,6 +22,8 @@ If you want to replicate CS2 results, the code and relevant data sets will be pr
 - ✅ Can be easily integrated with Python data science tools
 - ✅ Optional integration with PySWMM for direct SWMM modeling
 
+👉 **See [QUICKSTART.md](QUICKSTART.md) to get started in 5 minutes!**
+
 👉 **See [PYTHON_README.md](PYTHON_README.md) for detailed Python usage instructions.**
 
 Quick start with Python:
